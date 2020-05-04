@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp1/ButtonWidget.dart';
 import 'package:flutterapp1/EchoRoute.dart';
+import 'package:flutterapp1/ImageWidget.dart';
 import 'package:flutterapp1/RouterTestRoute.dart';
 import 'package:flutterapp1/TextWidget.dart';
 import 'package:flutterapp1/TipRoute.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new ButtonWidget(),
+      home: new ImageWidget(),
     );
   }
 }
