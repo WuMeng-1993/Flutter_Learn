@@ -4,6 +4,7 @@ import 'package:flutterapp1/EchoRoute.dart';
 import 'package:flutterapp1/FocusTestRoute.dart';
 import 'package:flutterapp1/FormTestRoute.dart';
 import 'package:flutterapp1/ImageWidget.dart';
+import 'package:flutterapp1/TwoProgressIndicator.dart';
 import 'package:flutterapp1/RouterTestRoute.dart';
 import 'package:flutterapp1/SwitchAndCheckBoxTestRoute.dart';
 import 'package:flutterapp1/TextFieldWidget.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new FormTestRoute(),
+      home: new TwoProgressIndicator(),
     );
   }
 }
