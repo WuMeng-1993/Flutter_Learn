@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp1/ButtonWidget.dart';
+import 'package:flutterapp1/ColumnTestRouter.dart';
 import 'package:flutterapp1/EchoRoute.dart';
 import 'package:flutterapp1/FocusTestRoute.dart';
 import 'package:flutterapp1/FormTestRoute.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new RowTestRoute(),
+      home: new ColumnTestRouter(),
     );
   }
 }
