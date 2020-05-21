@@ -7,6 +7,7 @@ import 'package:flutterapp1/FlexLayoutTestRoute.dart';
 import 'package:flutterapp1/FocusTestRoute.dart';
 import 'package:flutterapp1/FormTestRoute.dart';
 import 'package:flutterapp1/ImageWidget.dart';
+import 'package:flutterapp1/PaddingTestRoute.dart';
 import 'package:flutterapp1/ProgressRoute.dart';
 import 'package:flutterapp1/RowTestRoute.dart';
 import 'package:flutterapp1/StackAndPositionedTestRoute.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new AlignTestRoute(),
+      home: new PaddingTestRoute(),
     );
   }
 }
