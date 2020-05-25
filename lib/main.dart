@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp1/AlignTestRoute.dart';
 import 'package:flutterapp1/ButtonWidget.dart';
 import 'package:flutterapp1/ColumnTestRouter.dart';
+import 'package:flutterapp1/DecoratedBoxTest.dart';
 import 'package:flutterapp1/EchoRoute.dart';
 import 'package:flutterapp1/FlexLayoutTestRoute.dart';
 import 'package:flutterapp1/FocusTestRoute.dart';
@@ -19,6 +20,7 @@ import 'package:flutterapp1/TextWidget.dart';
 import 'package:flutterapp1/TipRoute.dart';
 import 'package:flutterapp1/WrapTestRoute.dart';
 
+import 'ConstrainedBoxTestRouter.dart';
 import 'NewRoute.dart';
 
 void main() {
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new PaddingTestRoute(),
+      home: new DecoratedBoxTest(),
     );
   }
 }
