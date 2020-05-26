@@ -12,6 +12,7 @@ import 'package:flutterapp1/PaddingTestRoute.dart';
 import 'package:flutterapp1/ProgressRoute.dart';
 import 'package:flutterapp1/RowTestRoute.dart';
 import 'package:flutterapp1/StackAndPositionedTestRoute.dart';
+import 'package:flutterapp1/TransformTestRouter.dart';
 import 'package:flutterapp1/TwoProgressIndicator.dart';
 import 'package:flutterapp1/RouterTestRoute.dart';
 import 'package:flutterapp1/SwitchAndCheckBoxTestRoute.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new DecoratedBoxTest(),
+      home: new TransformTestRouter(),
     );
   }
 }
