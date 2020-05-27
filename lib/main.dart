@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp1/AlignTestRoute.dart';
 import 'package:flutterapp1/ButtonWidget.dart';
 import 'package:flutterapp1/ColumnTestRouter.dart';
+import 'package:flutterapp1/ContainerTestRouter.dart';
 import 'package:flutterapp1/DecoratedBoxTest.dart';
 import 'package:flutterapp1/EchoRoute.dart';
 import 'package:flutterapp1/FlexLayoutTestRoute.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new TransformTestRouter(),
+      home: new ContainerTestRouter(),
     );
   }
 }
