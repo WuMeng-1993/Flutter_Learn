@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp1/AlignTestRoute.dart';
 import 'package:flutterapp1/ButtonWidget.dart';
+import 'package:flutterapp1/ClipTestRoute.dart';
 import 'package:flutterapp1/ColumnTestRouter.dart';
 import 'package:flutterapp1/ContainerTestRouter.dart';
 import 'package:flutterapp1/DecoratedBoxTest.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: new ContainerTestRouter(),
+      home: new ClipTestRoute(),
     );
   }
 }
