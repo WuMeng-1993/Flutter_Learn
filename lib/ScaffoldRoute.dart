@@ -7,8 +7,8 @@ class ScaffoldRoute extends StatefulWidget {
   }
 }
 
-class _ScaffoldRouteState extends State<ScaffoldRoute>
-    with SingleTickerProviderStateMixin {
+class _ScaffoldRouteState extends State<ScaffoldRoute> with SingleTickerProviderStateMixin {
+
   TabController _tabController;
 
   List tabs = ["新闻", "历史", "图片"];
@@ -66,6 +66,16 @@ class _ScaffoldRouteState extends State<ScaffoldRoute>
           );
         }).toList(),
       ),
+      // 悬浮按钮
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: _onAdd,
+      ),
     );
   }
+
+  void _onAdd() {
+
+  }
+
 }
