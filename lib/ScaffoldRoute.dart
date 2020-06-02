@@ -13,6 +13,8 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> with SingleTickerProvider
 
   List tabs = ["新闻", "历史", "图片"];
 
+  int _selectedIndex = 1;
+
   @override
   void initState() {
     super.initState();
@@ -71,7 +73,24 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> with SingleTickerProvider
         child: Icon(Icons.add),
         onPressed: _onAdd,
       ),
+      // 底部导航
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home),title: Text("Home")),
+          BottomNavigationBarItem(icon: Icon(Icons.business),title: Text("Business")),
+          BottomNavigationBarItem(icon: Icon(Icons.school),title: Text("School"))
+        ],
+        currentIndex: _selectedIndex,
+        fixedColor: Colors.blue,
+        onTap: _onItemTapped,
+      ),
     );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   void _onAdd() {
