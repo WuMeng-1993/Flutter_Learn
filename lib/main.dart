@@ -14,6 +14,7 @@ import 'package:flutterapp1/PaddingTestRoute.dart';
 import 'package:flutterapp1/ProgressRoute.dart';
 import 'package:flutterapp1/RowTestRoute.dart';
 import 'package:flutterapp1/ScaffoldRoute.dart';
+import 'package:flutterapp1/SingleChildScrollViewTest.dart';
 import 'package:flutterapp1/StackAndPositionedTestRoute.dart';
 import 'package:flutterapp1/TransformTestRouter.dart';
 import 'package:flutterapp1/TwoProgressIndicator.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: ScaffoldRoute(),
+      home: SingleChildScrollViewTest(),
     );
   }
 }
