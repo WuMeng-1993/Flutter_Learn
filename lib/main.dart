@@ -10,6 +10,7 @@ import 'package:flutterapp1/FlexLayoutTestRoute.dart';
 import 'package:flutterapp1/FocusTestRoute.dart';
 import 'package:flutterapp1/FormTestRoute.dart';
 import 'package:flutterapp1/ImageWidget.dart';
+import 'package:flutterapp1/InfiniteListView.dart';
 import 'package:flutterapp1/ListView2TestRoute.dart';
 import 'package:flutterapp1/ListViewTestRoute.dart';
 import 'package:flutterapp1/PaddingTestRoute.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: ListView2TestRoute(),
+      home: InfiniteListView(),
     );
   }
 }
