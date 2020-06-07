@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
+/// 无线刷新
 class InfiniteListView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -26,9 +27,13 @@ class _InfiniteListView extends State<InfiniteListView> {
       body: ListView.separated(
         itemCount: _words.length,
         itemBuilder: (context, index) {
+          // 显示到底了
           if (_words[index] == loadingTag) {
+            // 数据的个数小于100
             if (_words.length - 1 < 100) {
+              // 加载更多的数据
               _retrieveData();
+              // 显示转圈的进度条
               return Container(
                 padding: const EdgeInsets.all(16.0),
                 alignment: Alignment.center,
@@ -41,6 +46,7 @@ class _InfiniteListView extends State<InfiniteListView> {
                 ),
               );
             } else {
+              // 大于100条，显示没有更多了
               return Container(
                 padding: const EdgeInsets.all(16.0),
                 alignment: Alignment.center,
@@ -57,7 +63,7 @@ class _InfiniteListView extends State<InfiniteListView> {
         },
         separatorBuilder: (context, index) {
           return Divider(
-            height: .0,
+            height: 2.0,
           );
         },
       ),
@@ -67,7 +73,9 @@ class _InfiniteListView extends State<InfiniteListView> {
   void _retrieveData() {
     Future.delayed(Duration(seconds: 2)).then((value) {
       setState(() {
+        // 重新构建列表
         _words.insertAll(_words.length - 1,
+            // 每次生成20个单词
             generateWordPairs().take(20).map((e) => e.asPascalCase).toList());
       });
     });
