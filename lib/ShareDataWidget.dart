@@ -6,7 +6,8 @@ class ShareDataWidget extends InheritedWidget {
   final int data;
   
   ShareDataWidget({
-    @required this.data,
+    @required 
+    this.data,
     Widget child
   }) : super(child: child);
   
