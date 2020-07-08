@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp1/InheriteTestWidget.dart';
+import 'file:///E:/Flutter/flutter_app_1/lib/inherited/InheriteTestWidget.dart';
 import 'ShareDataWidget.dart';
 
 class InheritedWidgetTestRoute extends StatefulWidget {
