@@ -13,7 +13,7 @@ class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
   });
 
   static T of<T>(BuildContext context) {
-    final type = _typeOf<InheritedProvider<T>>();
+    // final type = _typeOf<InheritedProvider<T>>();
     final provider = context.dependOnInheritedWidgetOfExactType<InheritedProvider<T>>();
     return provider.data;
   }

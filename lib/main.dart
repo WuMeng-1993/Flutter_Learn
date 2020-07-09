@@ -31,6 +31,7 @@ import 'package:flutterapp1/TextWidget.dart';
 import 'package:flutterapp1/TipRoute.dart';
 import 'package:flutterapp1/WillPopScopeTestRoute.dart';
 import 'package:flutterapp1/WrapTestRoute.dart';
+import 'package:flutterapp1/provider/ProviderRoute.dart';
 
 import 'ConstrainedBoxTestRouter.dart';
 import 'NewRoute.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
 //          },
 //        },
         // home: new MyHomePage(title: "Flutter Demo Home Page")
-      home: InheritedWidgetTestRoute(),
+      home: ProviderRoute(),
     );
   }
 }
