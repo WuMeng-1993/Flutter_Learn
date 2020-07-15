@@ -21,6 +21,7 @@ class NavBar extends StatelessWidget {
           title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            // 根据背景色亮度来确定title颜色
             color: color.computeLuminance() < 0.5 ? Colors.white : Colors.black,
           ),
         ),
