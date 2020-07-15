@@ -11,7 +11,9 @@ class NavBarTestRoute extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
+          // 背景色为蓝色，则title自动为白色
           NavBar(title: "标题",color: Colors.blue),
+          // 背景色为白色，则title自动为黑色
           NavBar(title: "标题",color: Colors.white)
         ],
       ),
