@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DialogTestRoute extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +20,21 @@ class DialogTestRoute extends StatelessWidget {
                   print("已确定删除");
                 }
               },
+            ),
+            RaisedButton(
+              child: Text("对话框2"),
+              onPressed: () async {
+                int i = await changeLanguage(context);
+                if(i == 1) {
+                  print("中文简体");
+                }
+                if(i == 2) {
+                  print("美式英语");
+                }
+                if(i == null) {
+                  print("取消选择");
+                }
+              },
             )
           ],
         ),
@@ -28,9 +42,11 @@ class DialogTestRoute extends StatelessWidget {
     );
   }
 
+  // 显示AlertDialog
   Future<bool> showDeleteConfirmDialog1(BuildContext context) {
     return showDialog<bool>(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return AlertDialog(
             title: Text("提示"),
@@ -46,9 +62,37 @@ class DialogTestRoute extends StatelessWidget {
               )
             ],
           );
-        }
-    );
+        });
   }
 
-
+  // 显示SimpleDialog
+  Future<int> changeLanguage(BuildContext context) {
+    return showDialog<int>(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text("请选择语音"),
+            children: <Widget>[
+              SimpleDialogOption(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6),
+                  child: Text("简体中文"),
+                ),
+                onPressed: () {
+                  return Navigator.of(context).pop(1);
+                },
+              ),
+              SimpleDialogOption(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6),
+                  child: Text("美式英语"),
+                ),
+                onPressed: () {
+                  return Navigator.of(context).pop(2);
+                },
+              )
+            ],
+          );
+        });
+  }
 }
