@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class DialogTestRoute extends StatelessWidget {
@@ -25,15 +27,21 @@ class DialogTestRoute extends StatelessWidget {
               child: Text("对话框2"),
               onPressed: () async {
                 int i = await changeLanguage(context);
-                if(i == 1) {
+                if (i == 1) {
                   print("中文简体");
                 }
-                if(i == 2) {
+                if (i == 2) {
                   print("美式英语");
                 }
-                if(i == null) {
+                if (i == null) {
                   print("取消选择");
                 }
+              },
+            ),
+            RaisedButton(
+              child: Text("对话框3"),
+              onPressed: () async {
+                await showListDialog(context);
               },
             )
           ],
@@ -90,8 +98,35 @@ class DialogTestRoute extends StatelessWidget {
                 onPressed: () {
                   return Navigator.of(context).pop(2);
                 },
+              ),
+            ],
+          );
+        });
+  }
+
+  // 显示ListView
+  Future<void> showListDialog(BuildContext context) async {
+    await showDialog<int>(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          var child = Column(
+            children: <Widget>[
+              ListTile(title: Text("请选择")),
+              Expanded(
+                child: ListView.builder(
+                    itemCount: 30,
+                    itemBuilder: (context,index) {
+                      return ListTile(
+                        title: Text("$index"),
+                        onTap: () => Navigator.of(context).pop(index),
+                      );
+                    }),
               )
             ],
+          );
+          return Dialog(
+            child: child,
           );
         });
   }
