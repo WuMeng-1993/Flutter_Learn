@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class DialogTestRoute extends StatelessWidget {
@@ -43,6 +41,12 @@ class DialogTestRoute extends StatelessWidget {
               onPressed: () async {
                 await showListDialog(context);
               },
+            ),
+            RaisedButton(
+              child: Text("对话框4"),
+              onPressed: () async {
+                await funShowCustomDialog(context);
+              }
             )
           ],
         ),
@@ -116,7 +120,7 @@ class DialogTestRoute extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                     itemCount: 30,
-                    itemBuilder: (context,index) {
+                    itemBuilder: (context, index) {
                       return ListTile(
                         title: Text("$index"),
                         onTap: () => Navigator.of(context).pop(index),
@@ -130,4 +134,66 @@ class DialogTestRoute extends StatelessWidget {
           );
         });
   }
+
+  // 自定义一个
+  Future<T> showCustomDialog<T>(
+      {BuildContext context,
+      bool barrierDismissible = true,
+      WidgetBuilder builder}) {
+    final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+    return showGeneralDialog(
+        context: context,
+        barrierDismissible: barrierDismissible,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        barrierColor: Colors.black87,
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          final Widget pageChild = Builder(builder: builder);
+          return SafeArea(
+            child: Builder(builder: (BuildContext context) {
+              return theme != null
+                  ? Theme(data: theme, child: pageChild)
+                  : pageChild;
+            }),
+          );
+        },
+        transitionDuration: Duration(milliseconds: 150),
+        transitionBuilder: _buildMaterialDialogTransitions);
+  }
+
+  Widget _buildMaterialDialogTransitions(
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child) {
+    return ScaleTransition(
+      scale: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+      child: child,
+    );
+  }
+
+  Future<bool> funShowCustomDialog(BuildContext context) async{
+    return await showCustomDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("提示"),
+          content: Text("确定要删除吗?"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("取消"),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            FlatButton(
+              child: Text("确定"),
+              onPressed: () => Navigator.of(context).pop(true),
+            )
+          ],
+        );
+      }
+    );
+
+  }
+
 }
