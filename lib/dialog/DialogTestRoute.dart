@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp1/dialog/DialogRoute.dart';
 
 class DialogTestRoute extends StatelessWidget {
   @override
@@ -47,7 +48,8 @@ class DialogTestRoute extends StatelessWidget {
               onPressed: () async {
                 await funShowCustomDialog(context);
               }
-            )
+            ),
+            DialogRoute(),
           ],
         ),
       ),
