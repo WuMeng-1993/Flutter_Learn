@@ -54,7 +54,7 @@ class DialogTestRoute extends StatelessWidget {
               child: Text("复选框可点击"),
               onPressed: () async {
                 bool deleteTree = await showDeleteConfirmDialog2(context);
-                if(deleteTree) {
+                if (deleteTree) {
                   print("确认");
                 } else {
                   print("取消");
@@ -65,7 +65,18 @@ class DialogTestRoute extends StatelessWidget {
               child: Text("复选框可点击2"),
               onPressed: () async {
                 bool deleteTree = await showDeleteConfirmDialog3(context);
-                if(deleteTree) {
+                if (deleteTree) {
+                  print("确认");
+                } else {
+                  print("取消");
+                }
+              },
+            ),
+            RaisedButton(
+              child: Text("复选框可点击3"),
+              onPressed: () async {
+                bool deleteTree = await showDeleteConfirmDialog4(context);
+                if (deleteTree) {
                   print("确认");
                 } else {
                   print("取消");
@@ -75,6 +86,52 @@ class DialogTestRoute extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<bool> showDeleteConfirmDialog4(BuildContext context) {
+    bool _withTree = false;
+    return showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("提示"),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text("你确定要删除当前文件吗？"),
+                Row(
+                  children: <Widget>[
+                    Text("同时删除子目录?"),
+                    Builder(
+                      builder: (BuildContext context) {
+                        return Checkbox(
+                          value: _withTree,
+                          onChanged: (bool value) {
+                            (context as Element).markNeedsBuild();
+                            _withTree = !_withTree;
+                          },
+
+                        );
+                      },
+                    )
+                  ],
+                )
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                  child: Text("取消"),
+                  onPressed: () => Navigator.of(context).pop(false)
+              ),
+              FlatButton(
+                child: Text("确定"),
+                onPressed: () => Navigator.of(context).pop(true),
+              )
+            ],
+          );
+        }
     );
   }
 
@@ -94,7 +151,7 @@ class DialogTestRoute extends StatelessWidget {
                   children: <Widget>[
                     Text("同时删除子目录?"),
                     StatefulBuilder(
-                      builder: (context,_setState) {
+                      builder: (context, _setState) {
                         return Checkbox(
                           value: _withTree,
                           onChanged: (bool value) {
@@ -127,40 +184,40 @@ class DialogTestRoute extends StatelessWidget {
   Future<bool> showDeleteConfirmDialog2(BuildContext context) {
     bool _withTree = false;
     return showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("提示"),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text("你确定要删除当前文件吗？"),
-              Row(
-                children: <Widget>[
-                  Text("同时删除子目录?"),
-                  DialogCheckbox(
-                    value: _withTree,
-                    onChange: (bool value) {
-                      _withTree = !_withTree;
-                    },
-                  )
-                ],
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("提示"),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text("你确定要删除当前文件吗？"),
+                Row(
+                  children: <Widget>[
+                    Text("同时删除子目录?"),
+                    DialogCheckbox(
+                      value: _withTree,
+                      onChange: (bool value) {
+                        _withTree = !_withTree;
+                      },
+                    )
+                  ],
+                )
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                  child: Text("取消"),
+                  onPressed: () => Navigator.of(context).pop(false)
+              ),
+              FlatButton(
+                child: Text("确定"),
+                onPressed: () => Navigator.of(context).pop(true),
               )
             ],
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text("取消"),
-              onPressed: () => Navigator.of(context).pop(false)
-            ),
-            FlatButton(
-              child: Text("确定"),
-              onPressed: () => Navigator.of(context).pop(true),
-            )
-          ],
-        );
-      }
+          );
+        }
     );
   }
 
@@ -246,16 +303,17 @@ class DialogTestRoute extends StatelessWidget {
   }
 
   // 自定义一个
-  Future<T> showCustomDialog<T>(
-      {BuildContext context,
-      bool barrierDismissible = true,
-      WidgetBuilder builder}) {
+  Future<T> showCustomDialog<T>({BuildContext context,
+    bool barrierDismissible = true,
+    WidgetBuilder builder}) {
     final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
     return showGeneralDialog(
         context: context,
         barrierDismissible: barrierDismissible,
         barrierLabel:
-            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        MaterialLocalizations
+            .of(context)
+            .modalBarrierDismissLabel,
         barrierColor: Colors.black87,
         pageBuilder: (BuildContext context, Animation<double> animation,
             Animation<double> secondaryAnimation) {
@@ -272,8 +330,7 @@ class DialogTestRoute extends StatelessWidget {
         transitionBuilder: _buildMaterialDialogTransitions);
   }
 
-  Widget _buildMaterialDialogTransitions(
-      BuildContext context,
+  Widget _buildMaterialDialogTransitions(BuildContext context,
       Animation<double> animation,
       Animation<double> secondaryAnimation,
       Widget child) {
