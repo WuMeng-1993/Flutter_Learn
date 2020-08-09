@@ -82,11 +82,60 @@ class DialogTestRoute extends StatelessWidget {
                   print("取消");
                 }
               },
+            ),
+            RaisedButton(
+              child: Text("弹出底部菜单列表"),
+              onPressed: () async {
+                int type = await _showModalBottomSheet(context);
+                print(type);
+              },
+            ),
+            RaisedButton(
+              child: Text("弹出一个全屏的对话框"),
+              onPressed: () {
+                _showBottomSheet(context);
+              },
             )
           ],
         ),
       ),
     );
+  }
+
+  PersistentBottomSheetController<int> _showBottomSheet(BuildContext context) {
+    return showBottomSheet<int>(
+        context: context,
+        builder: (BuildContext context) {
+          return ListView.builder(
+              itemCount: 30,
+              itemBuilder: (BuildContext context,int index) {
+                return ListTile(
+                  title: Text("$index"),
+                  onTap: () {
+                    print("$index");
+                    Navigator.of(context).pop();
+                  },
+                );
+              }
+          );
+        });
+  }
+
+  // 显示底部弹窗
+  Future<int> _showModalBottomSheet(BuildContext context) {
+    return showModalBottomSheet<int>(
+        context: context,
+        builder: (BuildContext context) {
+          return ListView.builder(
+              itemCount: 30,
+              itemBuilder: (BuildContext context,int index) {
+                return ListTile(
+                  title: Text("$index"),
+                  onTap: () => Navigator.of(context).pop(index),
+                );
+              }
+          );
+        });
   }
 
   Future<bool> showDeleteConfirmDialog4(BuildContext context) {
@@ -112,7 +161,6 @@ class DialogTestRoute extends StatelessWidget {
                             (context as Element).markNeedsBuild();
                             _withTree = !_withTree;
                           },
-
                         );
                       },
                     )
@@ -123,16 +171,14 @@ class DialogTestRoute extends StatelessWidget {
             actions: <Widget>[
               FlatButton(
                   child: Text("取消"),
-                  onPressed: () => Navigator.of(context).pop(false)
-              ),
+                  onPressed: () => Navigator.of(context).pop(false)),
               FlatButton(
                 child: Text("确定"),
                 onPressed: () => Navigator.of(context).pop(true),
               )
             ],
           );
-        }
-    );
+        });
   }
 
   Future<bool> showDeleteConfirmDialog3(BuildContext context) {
@@ -169,16 +215,14 @@ class DialogTestRoute extends StatelessWidget {
             actions: <Widget>[
               FlatButton(
                   child: Text("取消"),
-                  onPressed: () => Navigator.of(context).pop(false)
-              ),
+                  onPressed: () => Navigator.of(context).pop(false)),
               FlatButton(
                 child: Text("确定"),
                 onPressed: () => Navigator.of(context).pop(true),
               )
             ],
           );
-        }
-    );
+        });
   }
 
   Future<bool> showDeleteConfirmDialog2(BuildContext context) {
@@ -209,16 +253,14 @@ class DialogTestRoute extends StatelessWidget {
             actions: <Widget>[
               FlatButton(
                   child: Text("取消"),
-                  onPressed: () => Navigator.of(context).pop(false)
-              ),
+                  onPressed: () => Navigator.of(context).pop(false)),
               FlatButton(
                 child: Text("确定"),
                 onPressed: () => Navigator.of(context).pop(true),
               )
             ],
           );
-        }
-    );
+        });
   }
 
   // 显示AlertDialog
@@ -303,17 +345,16 @@ class DialogTestRoute extends StatelessWidget {
   }
 
   // 自定义一个
-  Future<T> showCustomDialog<T>({BuildContext context,
-    bool barrierDismissible = true,
-    WidgetBuilder builder}) {
+  Future<T> showCustomDialog<T>(
+      {BuildContext context,
+      bool barrierDismissible = true,
+      WidgetBuilder builder}) {
     final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
     return showGeneralDialog(
         context: context,
         barrierDismissible: barrierDismissible,
         barrierLabel:
-        MaterialLocalizations
-            .of(context)
-            .modalBarrierDismissLabel,
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
         barrierColor: Colors.black87,
         pageBuilder: (BuildContext context, Animation<double> animation,
             Animation<double> secondaryAnimation) {
@@ -330,7 +371,8 @@ class DialogTestRoute extends StatelessWidget {
         transitionBuilder: _buildMaterialDialogTransitions);
   }
 
-  Widget _buildMaterialDialogTransitions(BuildContext context,
+  Widget _buildMaterialDialogTransitions(
+      BuildContext context,
       Animation<double> animation,
       Animation<double> secondaryAnimation,
       Widget child) {
