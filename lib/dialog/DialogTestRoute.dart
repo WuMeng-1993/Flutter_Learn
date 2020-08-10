@@ -101,10 +101,26 @@ class DialogTestRoute extends StatelessWidget {
               onPressed: () async {
                 showLoadingDialog(context);
               },
+            ),
+            RaisedButton(
+              child: Text("显示日历"),
+              onPressed: () async {
+                _showDatePicker(context);
+              },
             )
           ],
         ),
       ),
+    );
+  }
+
+  Future<DateTime> _showDatePicker(BuildContext context) {
+    var date = DateTime.now();
+    return showDatePicker(
+        context: context,
+        initialDate: date,
+        firstDate: date.subtract(Duration(days: 10)),
+        lastDate: date.add(Duration(days: 30))
     );
   }
 
@@ -128,10 +144,8 @@ class DialogTestRoute extends StatelessWidget {
               ],
             ),
           );
-        }
-    );
+        });
   }
-
 
   PersistentBottomSheetController<int> _showBottomSheet(BuildContext context) {
     return showBottomSheet<int>(
@@ -147,8 +161,7 @@ class DialogTestRoute extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                 );
-              }
-          );
+              });
         });
   }
 
@@ -164,8 +177,7 @@ class DialogTestRoute extends StatelessWidget {
                   title: Text("$index"),
                   onTap: () => Navigator.of(context).pop(index),
                 );
-              }
-          );
+              });
         });
   }
 
@@ -433,5 +445,4 @@ class DialogTestRoute extends StatelessWidget {
           );
         });
   }
-
 }
