@@ -95,6 +95,12 @@ class DialogTestRoute extends StatelessWidget {
               onPressed: () {
                 _showBottomSheet(context);
               },
+            ),
+            RaisedButton(
+              child: Text("显示加载框1"),
+              onPressed: () async {
+                showLoadingDialog(context);
+              },
             )
           ],
         ),
@@ -102,13 +108,38 @@ class DialogTestRoute extends StatelessWidget {
     );
   }
 
+  // 显示加载框1
+  void showLoadingDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                CircularProgressIndicator(),
+                Padding(
+                  padding: EdgeInsets.only(top: 26),
+                  child: Text("正在加载中...请稍等"),
+                )
+              ],
+            ),
+          );
+        }
+    );
+  }
+
+
   PersistentBottomSheetController<int> _showBottomSheet(BuildContext context) {
     return showBottomSheet<int>(
         context: context,
         builder: (BuildContext context) {
           return ListView.builder(
               itemCount: 30,
-              itemBuilder: (BuildContext context,int index) {
+              itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   title: Text("$index"),
                   onTap: () {
@@ -128,7 +159,7 @@ class DialogTestRoute extends StatelessWidget {
         builder: (BuildContext context) {
           return ListView.builder(
               itemCount: 30,
-              itemBuilder: (BuildContext context,int index) {
+              itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   title: Text("$index"),
                   onTap: () => Navigator.of(context).pop(index),
@@ -345,16 +376,17 @@ class DialogTestRoute extends StatelessWidget {
   }
 
   // 自定义一个
-  Future<T> showCustomDialog<T>(
-      {BuildContext context,
-      bool barrierDismissible = true,
-      WidgetBuilder builder}) {
+  Future<T> showCustomDialog<T>({BuildContext context,
+    bool barrierDismissible = true,
+    WidgetBuilder builder}) {
     final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
     return showGeneralDialog(
         context: context,
         barrierDismissible: barrierDismissible,
         barrierLabel:
-            MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        MaterialLocalizations
+            .of(context)
+            .modalBarrierDismissLabel,
         barrierColor: Colors.black87,
         pageBuilder: (BuildContext context, Animation<double> animation,
             Animation<double> secondaryAnimation) {
@@ -371,8 +403,7 @@ class DialogTestRoute extends StatelessWidget {
         transitionBuilder: _buildMaterialDialogTransitions);
   }
 
-  Widget _buildMaterialDialogTransitions(
-      BuildContext context,
+  Widget _buildMaterialDialogTransitions(BuildContext context,
       Animation<double> animation,
       Animation<double> secondaryAnimation,
       Widget child) {
@@ -402,4 +433,5 @@ class DialogTestRoute extends StatelessWidget {
           );
         });
   }
+
 }
